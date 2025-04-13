@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  defi-analytics:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_ADDRESS=:8080
+      - MONGO_URI=mongodb://mongo:27017
+      - REDIS_ADDR=redis:6379
+      - REDIS_DB=0
+    depends_on:
+      - mongo
+      - redis
+
+  mongo:
+    image: mongo:5
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  redis:
+    image: redis:6
+    restart: always
+    ports:
+      - "6379:6379"
+
+volumes:
+  mongo-data:

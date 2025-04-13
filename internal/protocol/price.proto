@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package protocol;
+
+// PriceUpdate defines the structure for a price update message.
+message PriceUpdate {
+    string symbol = 1;
+    double price = 2;
+}
